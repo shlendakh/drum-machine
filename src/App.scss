@@ -1,0 +1,13 @@
+/* Author: Paweł Szlendak
+ * Github: https://github.com/shlendakh
+ * 
+ * This code is released under the MIT license.
+ */
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: #282c34;
+}

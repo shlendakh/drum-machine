@@ -1,0 +1,32 @@
+/* Author: Paweł Szlendak
+ * Github: https://github.com/shlendakh
+ * 
+ * This code is released under the MIT license.
+ */
+
+ .drum-pad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  height: 100px;
+  width: 100px;
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  
+
+  // The class for active drum pad
+  &--active {
+    background-color: #f00;  // The burning effect
+    transition: background-color 0.1s ease-in-out;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

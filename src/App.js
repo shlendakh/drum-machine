@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+/**
+ * Author: Paweł Szlendak
+ * Github: https://github.com/shlendakh
+ * 
+ * This code is released under the MIT license.
+ */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// Importing required module
+import React from "react";
+import DrumMachine from "./components/DrumMachine";
+import './App.scss';
 
+// App Component
+const App = () => {
+  // Rendering DrumMachine Component
+  return <DrumMachine />;
+};
+
+// Exporting App Component
 export default App;
