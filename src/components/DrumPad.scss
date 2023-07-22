@@ -8,25 +8,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  height: 100px;
   width: 100px;
-  background-color: #444;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
+  height: 100px;
+  margin: 10px;
+  background-color: #333;
+  color: #0f0;
+  font-size: 1.2em;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  
+  border-radius: 5px;
+  position: relative; // To position the music icon
 
-  // The class for active drum pad
+  // Define the animation for the music icon
+  .drum-pad__note {
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: float 2s ease-in-out forwards;
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-70px, -70px) scale(0.5);
+        opacity: 0;
+      }
+    }
+  }
+
   &--active {
     background-color: #f00;  // The burning effect
     transition: background-color 0.1s ease-in-out;
-  }
+    animation: active 0.1s;
 
-  &:active,
-  &:focus {
-    outline: none;
+    @keyframes active {
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
 }

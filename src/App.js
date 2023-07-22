@@ -5,10 +5,11 @@
  * This code is released under the MIT license.
  */
 
-// Importing required module
 import React from "react";
 import DrumMachine from "./components/DrumMachine";
 import './App.scss';
+
+console.log(window.location.href);
 
 // App Component
 const App = () => {
@@ -16,5 +17,4 @@ const App = () => {
   return <DrumMachine />;
 };
 
-// Exporting App Component
 export default App;

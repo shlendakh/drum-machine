@@ -5,22 +5,29 @@
  * This code is released under the MIT license.
  */
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import './DrumPad.scss';
+
+// Function to generate a random RGB color
+const generateRandomColor = () => {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+}
 
 // DrumPad Component
 const DrumPad = ({ id, letter, src, handleDisplay }) => {
-  // Reference to the audio element
   const audio = useRef();
-  // Reference to the drum pad div
   const drumPad = useRef();
+  const [animations, setAnimations] = useState([]);
 
-  // Adding an event listener for keypresses when the component mounts
   useEffect(() => {
     const upHandler = (e) => {
       if (e.key.toUpperCase() === letter) {
         drumPad.current.classList.remove('drum-pad--active');
-        console.log(e);
       }
     };
 
@@ -33,9 +40,7 @@ const DrumPad = ({ id, letter, src, handleDisplay }) => {
     };
   }, []);
 
-  // Function to handle keypresses
   const handleKeyPress = (e) => {
-    // If the key is the same as the letter of the drum pad, play the sound
     if (e.key.toUpperCase() === letter) {
       drumPad.current.classList.add('drum-pad--active');
       playSound();
@@ -43,19 +48,16 @@ const DrumPad = ({ id, letter, src, handleDisplay }) => {
   };
 
   const playSound = () => {
-    // Reset audio time to the start to ensure it plays if rapidly clicked
     audio.current.currentTime = 0;
-  
-    // Play the sound
     audio.current.play().then(() => {
-      console.log('Audio played!');
       handleDisplay(id);
+      // Add a new animation
+      setAnimations(animations => [...animations, {color: generateRandomColor()}]);
     }).catch((error) => {
       console.error('Failed to play audio:', error);
     });
   };
 
-  // Rendering the drum pad with its letter and audio
   return (
     <div 
       ref={drumPad}
@@ -67,6 +69,14 @@ const DrumPad = ({ id, letter, src, handleDisplay }) => {
       onClick={playSound}
     >
       {letter}
+      {animations.map((animation, index) => (
+        <FontAwesomeIcon 
+          className="drum-pad__note" 
+          style={{ color: animation.color }}
+          key={index} 
+          icon={faMusic} 
+        />
+      ))}
       <audio ref={audio} src={src} className="clip" id={letter} />
     </div>
   );
